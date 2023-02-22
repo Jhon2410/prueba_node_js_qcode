@@ -5,7 +5,7 @@ import {
     crearVehiculo,
     actualizarVehiculo,
     eliminarVehiculo
-} from '../controllers/vehiculoController.js';
+} from '../controllers/VehiculoController.js';
 
 router.post('/', leerVehiculos);
 router.post('/crear', crearVehiculo);

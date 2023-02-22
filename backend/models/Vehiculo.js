@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 const vehiculoSchema = new mongoose.Schema({
     nombre: {
         type: String,

@@ -1,4 +1,4 @@
-import Vehiculo from "../models/Vehiculo";
+import Vehiculo from "../models/Vehiculo.js";
 
 const leerVehiculos = () => {
     return Vehiculo.find();
@@ -31,7 +31,7 @@ const eliminarVehiculo = async (req, res) => {
     }
 };
 
-module.exports = {
+export {
     leerVehiculos,
     crearVehiculo,
     actualizarVehiculo,
