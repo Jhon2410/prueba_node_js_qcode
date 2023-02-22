@@ -2,11 +2,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import AuthLayout from './layouts/AuthLayout'
 
-import Login from './paginas/Login'
-import Registrar from './paginas/Registrar'
-import OlvidePassword from './paginas/OlvidePassword'
-import NuevoPassword from './paginas/NuevoPassword'
-import ConfirmarCuenta from './paginas/ConfirmarCuenta'
+import Login from './pages/Login'
+import Registrar from './pages/Registrar'
+import OlvidePassword from './pages/OlvidePassword'
+import NuevoPassword from './pages/NuevoPassword'
+import ConfirmarCuenta from './pages/ConfirmarCuenta'
 
 function App() {
 
