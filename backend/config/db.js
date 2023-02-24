@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+// Conexion a la base de datos no relacional usando moongose
 const conectarDB = async () => {
     try {
         const connection = await mongoose.connect(process.env.MONGO_URI,{
