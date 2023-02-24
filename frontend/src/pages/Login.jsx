@@ -1,12 +1,31 @@
 import { Link } from 'react-router-dom'
+import { validar_usuario } from '../services'
+import { validar_campos } from '../utils'
+import { connect } from 'react-redux'
 
-const Login = () => {
+const Login = ({ setUsuario }) => {
+    const validar_usuario_Login = async (e) => {
+        e.preventDefault()
+        const [email, password] = [document.getElementById('email').value, document.getElementById('password').value]
+
+        if (validar_campos(email, password)) {
+            const res = await validar_usuario(email, password)
+            if (res.status === 200) {
+                localStorage.setItem('usuario', JSON.stringify(res.data))
+                localStorage.setItem('nombre', res.data.nombre)
+                setUsuario(res.data)
+                localStorage.setItem('token', res.data.token)
+                window.location.href = "/crud"
+            }
+        }
+    }
+
     return (
         <>
             <h1 className="text-sky-600 font-black text-6xl capitalize">Inicia Sesión y Administra tus {''}
                 <span className="text-slate-700">Automoviles</span></h1>
 
-            <form className="my-10 bg-white shadow rounded-lg p-10">
+            <form className="my-10 bg-white shadow rounded-lg p-10" onSubmit={(e) => validar_usuario_Login(e)}>
                 <div className="my-5">
                     <label
                         className="uppercase text-gray-600 block text-xl font-bold"
@@ -17,6 +36,7 @@ const Login = () => {
                         type="email"
                         placeholder="Email de Registro"
                         className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+                        required
                     />
                 </div>
 
@@ -30,6 +50,7 @@ const Login = () => {
                         type="password"
                         placeholder="Ingresa tu Password"
                         className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+                        required
                     />
                 </div>
 
@@ -56,4 +77,9 @@ const Login = () => {
     )
 }
 
-export default Login
+
+const mapStateToDispatch = (dispatch) => ({
+    setUsuario: (usuario) => dispatch({ type: 'SET_USUARIO', payload: usuario })
+})
+
+export default connect(null, mapStateToDispatch)(Login)

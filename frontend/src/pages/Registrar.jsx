@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Alerta from '../components/Alerta'
 import axios from 'axios'
+import { registrar_usuario } from '../services'
 
 const Registrar = () => {
 
@@ -42,12 +43,16 @@ const Registrar = () => {
 
     // Crear usuario en la API
     try {
-      const { data } = await axios.post('http://localhost:7500/api/usuarios', { nombre, email, password })
-
+      const res = await registrar_usuario({ nombre, email, password })
       setAlerta({
-        msg: data.msg,
+        msg: res.data.msg,
         error: false
       })
+      if (res.status === 200) {
+        localStorage.setItem('token', res.data.token)
+        window.location.href = '/crud'
+      }
+
     } catch (error) {
       setAlerta({
         msg: error.response.data.msg,

@@ -7,9 +7,9 @@ import {
     eliminarVehiculo
 } from '../controllers/VehiculoController.js';
 
-router.post('/', leerVehiculos);
+router.get('/leer', leerVehiculos);
 router.post('/crear', crearVehiculo);
-router.get('/actualizar', actualizarVehiculo);
-router.post('/eliminar/:id', eliminarVehiculo);
+router.put('/actualizar/:id', actualizarVehiculo);
+router.delete('/eliminar/:id', eliminarVehiculo);
 
 export default router;

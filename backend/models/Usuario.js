@@ -23,12 +23,7 @@ const usuarioSchema = mongoose.Schema({
     },
     confirmado: {
         type: Boolean,
-        default: false,
-    },
-    rol: {
-        type: String,
-        required: true,
-        trim: true,
+        default: true,
     }
 }, {
     timestamps: true

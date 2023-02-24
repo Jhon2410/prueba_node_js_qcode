@@ -9,9 +9,30 @@ import NuevoPassword from './pages/NuevoPassword'
 import ConfirmarCuenta from './pages/ConfirmarCuenta'
 import Crud from './pages/Crud'
 import CrudLayout from './layouts/CrudLayout'
+import { useEffect } from 'react'
+import { validar_session } from './services'
+
+
 
 function App() {
 
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      (async () => {
+        const res = await validar_session(localStorage.getItem('token'));
+        if (!res.data.validate) {
+          localStorage.removeItem('token');
+          window.location.href = '/';
+        }
+      })()
+
+    } else {
+      if (!localStorage.getItem('token') && window.location.pathname != '/') {
+        window.location.href = '/'
+      }
+    }
+
+  }, [])
   return (
     <BrowserRouter>
       <Routes>

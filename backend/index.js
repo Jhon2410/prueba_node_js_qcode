@@ -4,12 +4,14 @@ import cors from "cors";
 import conectarDB from "./config/db.js";
 import usuarioRoutes from './routes/usuarioRoutes.js';
 import vehiculoRoutes from './routes/vehiculoRoutes.js';
-
+import excelRoutes from './routes/excelRoutes.js';
+import fileUpload from "express-fileupload";
 
 
 const app = express();
 app.use(express.json());
-
+app.use(express.static("public"));
+app.use(fileUpload())
 dotenv.config();
 
 conectarDB();
@@ -34,6 +36,7 @@ app.use(cors(corsOption));
 // Routing
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/vehiculos', vehiculoRoutes);
+app.use('/api/excel', excelRoutes);
 
 const PORT = process.env.PORT || 7500;
 
