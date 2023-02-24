@@ -1,7 +1,7 @@
 # prueba_node_js_qcode
 
 
-# Pueba react qcode - jhon anderson
+# Pueba react + node qcode - jhon anderson
 
 El proyecto se divido en dos directorios un con el frontend y el otro con el backend primero se debe clonar el reṕositorio.
 
