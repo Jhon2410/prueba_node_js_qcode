@@ -32,7 +32,6 @@ const ModalFooter = ({ setVehiculos, editar, _id }) => {
             document.getElementById("spinner-close").click()
 
         } catch (e) {
-            console.log(e)
             Swal.fire('Llene todos los campos y vuelva a intentarlo')
             document.getElementById("spinner-close").click()
             setTimeout(() => {

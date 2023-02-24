@@ -48,6 +48,7 @@ const Registrar = () => {
         error: false
       })
       if (res.status === 200) {
+        localStorage.setItem('nombre', nombre)
         localStorage.setItem('token', res.data.token)
         window.location.href = '/crud'
       }

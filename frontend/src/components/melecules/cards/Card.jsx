@@ -5,11 +5,9 @@ import "./css/Card.css";
 const Card = ({ vehiculo, idx, setVehiculos, editVehiculo, EDIT }) => {
 
     const eliminar = async (id) => {
-        document.getElementById("spinner-open").click()
         const res = await eliminar_vehiculo(id);
         const getVehiculos = await leer_vehiculos();
         setVehiculos(getVehiculos);
-        document.getElementById("spinner-close").click()
 
     }
 
