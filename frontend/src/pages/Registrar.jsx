@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Alerta from '../components/Alerta'
-import axios from 'axios'
 import { registrar_usuario } from '../services'
-
+import Swal from 'sweetalert2'
 const Registrar = () => {
 
   const [nombre, setNombre] = useState('')
@@ -54,6 +53,11 @@ const Registrar = () => {
       }
 
     } catch (error) {
+      Swal.fire(
+        error.response.data.msg,
+        "",
+        'error'
+      )
       setAlerta({
         msg: error.response.data.msg,
         error: true
@@ -149,10 +153,6 @@ const Registrar = () => {
           to="/"
         >¿Ya tienes una Cuenta? Iniciar Sesión</Link>
 
-        <Link
-          className='block text-center my-5 text-slate-500 uppercase text-sm'
-          to="/olvide-password"
-        >Olvide Mi Password</Link>
       </nav>
     </>
   )

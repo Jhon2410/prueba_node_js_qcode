@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { validar_usuario } from '../services'
 import { validar_campos } from '../utils'
 import { connect } from 'react-redux'
+import Swal from 'sweetalert2'
 
 const Login = ({ setUsuario }) => {
     const validar_usuario_Login = async (e) => {
@@ -9,13 +10,23 @@ const Login = ({ setUsuario }) => {
         const [email, password] = [document.getElementById('email').value, document.getElementById('password').value]
 
         if (validar_campos(email, password)) {
-            const res = await validar_usuario(email, password)
-            if (res.status === 200) {
-                localStorage.setItem('usuario', JSON.stringify(res.data))
-                localStorage.setItem('nombre', res.data.nombre)
-                setUsuario(res.data)
-                localStorage.setItem('token', res.data.token)
-                window.location.href = "/crud"
+            try {
+                const res = await validar_usuario(email, password)
+                if (res.status === 200) {
+                    localStorage.setItem('usuario', JSON.stringify(res.data))
+                    localStorage.setItem('nombre', res.data.nombre)
+                    setUsuario(res.data)
+                    localStorage.setItem('token', res.data.token)
+                    window.location.href = "/crud"
+                }
+            } catch (e) {
+                Swal.fire(
+                    'Ha ocurrido un error',
+                    'Usuario o contraseña incorrectos',
+                    'error'
+                )
+
+
             }
         }
     }
@@ -68,10 +79,6 @@ const Login = ({ setUsuario }) => {
                     to="/registrar"
                 >¿No tienen una cuenta? Regístrate</Link>
 
-                <Link
-                    className='block text-center my-5 text-slate-500 uppercase text-sm'
-                    to="/olvide-password"
-                >Olvide Mi Password</Link>
             </nav>
         </>
     )

@@ -11,7 +11,7 @@ const ListCards = ({ setVehiculos, vehiculos = [] }) => {
         })()
     }, [])
     const render_vehiculos = vehiculos.map((vehiculo, idx) => {
-        return <Card idx={idx} vehiculo={vehiculo}></Card>
+        return <Card idx={idx} key={idx} vehiculo={vehiculo}></Card>
     })
 
     return <div>{render_vehiculos}</div>

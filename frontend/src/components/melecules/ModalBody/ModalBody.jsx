@@ -19,9 +19,9 @@ const ModalBody = ({ marca, modelo, color, placa, imagen, observaciones, editVeh
                 <label htmlFor="exampleFormControlInput1" className="form-label">Color</label>
                 <input type="color" name="Color" className="form-control" value={color} id="exampleFormControlInput1" onChange={(e) => editVehiculo({ color: e.target.value })} placeholder="" />
             </div>
-            <div class="form-floating">
-                <textarea class="form-control" name="Observaciones" value={observaciones} placeholder="Leave a comment here" id="floatingTextarea2" style={{ "height": "100px" }} onChange={(e) => editVehiculo({ observaciones: e.target.value })}></textarea>
-                <label for="floatingTextarea2">Observaciones</label>
+            <div className="form-floating">
+                <textarea className="form-control" name="Observaciones" value={observaciones} placeholder="Leave a comment here" id="floatingTextarea2" style={{ "height": "100px" }} onChange={(e) => editVehiculo({ observaciones: e.target.value })}></textarea>
+                <label htmlFor="floatingTextarea2">Observaciones</label>
             </div>
             <div className="container col-md-6">
                 <div className="mb-5">
